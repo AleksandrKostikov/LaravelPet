@@ -10,6 +10,8 @@
             {{ $task->title }}
         </h3>
 
+        @include('tasks.tags', ['tags' => $task->tags])
+
         {{ $task->body }}
 
         @if($task->steps->isNotEmpty())

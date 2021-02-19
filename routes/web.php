@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompletedStepsController;
+use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\FeedbacksController;
@@ -9,6 +10,8 @@ use App\Http\Controllers\TaskStepsController;
 
 Route::view('/about', 'about');
 Route::view('/contacts', 'contacts');
+
+Route::get('/tasks/tags/{tag}', [TagsController::class, 'index']);
 
 Route::resource('/tasks', TasksController::class);
 
