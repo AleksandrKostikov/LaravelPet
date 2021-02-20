@@ -9,7 +9,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    public $fillable = ['title', 'body'];
+    public $fillable = ['title', 'body', 'owner_id'];
 
     public function getRouteKeyName()
     {

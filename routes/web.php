@@ -6,6 +6,7 @@ use App\Http\Controllers\TasksController;
 use App\Http\Controllers\FeedbacksController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\TaskStepsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/about', 'about');
@@ -27,3 +28,6 @@ Route::post('/tasks/{task}/steps', [TaskStepsController::class, 'store']);
 
 Route::post('/completed-steps/{step}', [CompletedStepsController::class, 'store']);
 Route::delete('/completed-steps/{step}', [CompletedStepsController::class, 'destroy']);
+
+Auth::routes();
+

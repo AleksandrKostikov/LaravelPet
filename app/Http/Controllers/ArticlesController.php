@@ -6,6 +6,11 @@ use App\Models\Article;
 
 class ArticlesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     public function index()
     {
         $articles = Article::latest()->where('published', 1)->get();
