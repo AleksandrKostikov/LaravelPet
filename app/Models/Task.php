@@ -11,6 +11,10 @@ class Task extends Model
 
     public $fillable = ['title', 'body', 'owner_id'];
 
+    protected $dispatchesEvents = [
+        'created' => \App\Events\TaskCreated::class,
+    ];
+
     public function getRouteKeyName()
     {
         return 'id';
@@ -34,5 +38,10 @@ class Task extends Model
     public function addStep($attributes)
     {
         return $this->steps()->create($attributes);
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -9,6 +9,14 @@ use App\Http\Controllers\TaskStepsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+//Route::get('/test', function(\Illuminate\Http\Request $request) {
+//    dd($request->session()->all());
+//    session(['name' => 'test']);
+//    session()->forget('name');
+//    session()->has('name');
+//    return session('name', 'defaultValue');
+//});
+
 Route::view('/about', 'about');
 Route::view('/contacts', 'contacts');
 
@@ -30,4 +38,3 @@ Route::post('/completed-steps/{step}', [CompletedStepsController::class, 'store'
 Route::delete('/completed-steps/{step}', [CompletedStepsController::class, 'destroy']);
 
 Auth::routes();
-

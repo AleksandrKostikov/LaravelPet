@@ -27,6 +27,10 @@
 
     @include('layout.nav')
 
+    <div class="container">
+        @include('layout.flash_message')
+    </div>
+
     <main class="container">
         <div class="row">
 

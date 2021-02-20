@@ -12,7 +12,7 @@
 
         @include('tasks.tags', ['tags' => $task->tags])
 
-        {{ $task->body }}
+        <h4>{{ $task->body }}</h4>
 
         @if($task->steps->isNotEmpty())
         <ul class="list-group">
