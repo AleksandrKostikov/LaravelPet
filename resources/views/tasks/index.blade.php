@@ -10,9 +10,7 @@
             Список задач
         </h3>
 
-        @foreach($tasks as $task)
-            @include('tasks.item')
-        @endforeach
+        @each('tasks.item', $tasks, 'task')
 
         <nav class="blog-pagination" aria-label="Pagination">
             <a class="btn btn-outline-primary" href="#">Older</a>
