@@ -38,3 +38,7 @@ Route::post('/completed-steps/{step}', [CompletedStepsController::class, 'store'
 Route::delete('/completed-steps/{step}', [CompletedStepsController::class, 'destroy']);
 
 Auth::routes();
+
+Route::middleware('auth')->post('/companies', function () {
+    auth()->user()->company()->create(request()->validate(['name' => 'required']));
+});

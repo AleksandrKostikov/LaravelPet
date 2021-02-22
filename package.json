@@ -21,6 +21,8 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
-        "cross-env": "^7.0.3"
+        "cross-env": "^7.0.3",
+        "express": "^4.17.1",
+        "webpack": "^5.23.0"
     }
 }
