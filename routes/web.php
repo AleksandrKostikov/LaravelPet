@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompletedStepsController;
+use App\Http\Controllers\PushServiceController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\FeedbacksController;
@@ -42,3 +43,6 @@ Auth::routes();
 Route::middleware('auth')->post('/companies', function () {
     auth()->user()->company()->create(request()->validate(['name' => 'required']));
 });
+
+Route::get('/service', [PushServiceController::class, 'form']);
+Route::post('/service', [PushServiceController::class, 'send']);
