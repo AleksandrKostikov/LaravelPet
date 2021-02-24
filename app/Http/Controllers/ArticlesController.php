@@ -13,7 +13,7 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        $articles = Article::latest()->where('published', 1)->get();
+        $articles = Article::latest()->where('published', 1)->simplePaginate(3);
 
         return view('welcome', compact('articles'));
     }

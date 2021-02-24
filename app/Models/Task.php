@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class Task extends Model
 {
@@ -14,6 +15,19 @@ class Task extends Model
     protected $dispatchesEvents = [
         'created' => \App\Events\TaskCreated::class,
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function (Task $task) {
+            $after = $task->getDirty();
+            $task->history()->attach(auth()->id(), [
+                'before' => json_encode(Arr::only($task->fresh()->toArray(), array_keys($after))),
+                'after' => json_encode($after),
+            ]);
+        });
+    }
 
     public function getRouteKeyName()
     {
@@ -43,5 +57,12 @@ class Task extends Model
     public function owner()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function history()
+    {
+        return $this->belongsToMany(User::class, 'task_histories')
+            ->withPivot(['before', 'after', 'created_at'])
+            ->withTimestamps();
     }
 }
